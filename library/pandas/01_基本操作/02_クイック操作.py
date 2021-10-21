@@ -28,12 +28,20 @@ import os
 import pandas as pd
 
 # データ読み込み
-current_path = os.getcwd()
-file = os.path.sep.join(['', 'grammar', 'pandas', 'csv', 'iris.csv'])
-iris = pd.read_csv(current_path + file)
+# --- irisデータセット（NAなし）
+fpath = "library/pandas/csv"
+fname = "iris.csv"
+iris = pd.read_csv(fpath + "/" + fname)
 
-# データ確認
-iris.head()
+# データ読み込み
+# --- irisデータセット（NAあり）
+fpath = "library/pandas/csv"
+fname = "iris_na.csv"
+iris_na = pd.read_csv(fpath + "/" + fname)
+
+# データフレーム定義
+# --- 空のデータフレーム
+df_empty = pd.DataFrame()
 
 
 # 1 データフレームの概要-------------------------------------------------------------------------
@@ -41,25 +49,28 @@ iris.head()
 # データフレームの構造
 iris.info()
 
-# 列名取得
-iris.columns
-
 # 列ごとのデータ型
 iris.dtypes
 
 # インデックス取得
 iris.index
 
-# 全要素数
-iris.size
+# 列名取得
+iris.columns
 
-# 行数と列数
-# --- 行列数
-# --- 行数
-# --- 列数
+# 行列数
 iris.shape
 iris.shape[0]
 iris.shape[1]
+
+# 次元数
+iris.ndim
+
+# 全要素数
+iris.size
+
+# メモリ使用量
+iris.memory_usage()
 
 
 # 2 データ確認 ---------------------------------------------------------------------------------
@@ -71,26 +82,38 @@ iris.head(n=5)
 iris.tail(n=5)
 
 # データ部分の抽出
+# --- NumpyのArray
 iris.values
 
 
 # 3 欠損値の確認 -------------------------------------------------------------------------------
 
 # 有効データ数のカウント
-iris.count()
+iris_na.count()
 
 # 欠損値のカウント
-iris.isnull().sum()
+iris_na.isnull().sum()
 
 # 欠損値がないか判定
-iris.isnull().any()
+iris_na.isnull().any()
+
+# データフレームが空かどうかを判定
+df_empty.empty
+iris.empty
+iris_na.empty
 
 
-# 4 シリーズの抽出 -----------------------------------------------------------------------------
+# 4 系列データの抽出 ------------------------------------------------------------------------
 
-# シリーズの抽出
-# ---- pandas.core.series.Series
+# シリーズで抽出
+# --- pandas.Series
 iris.Species
+iris["Species"]
+iris.loc[:, "Species"]
+
+# データフレームで抽出
+iris[["Species"]]
+iris.loc[:, ["Species"]]
 
 # Numpy配列に変換
 # --- numpy.ndarray
@@ -100,10 +123,10 @@ iris.Species.to_numpy()
 # 5 クイック分析 -----------------------------------------------------------------------------
 
 # 基本統計量
-iris.describe()
+iris_na.describe()
 
 # 相関分析
-iris.corr()
+iris_na.corr()
 
 
 # 6 クリップボード操作 -------------------------------------------------------------------------
@@ -115,5 +138,3 @@ iris.to_clipboard()
 # クリップボード入力
 # --- 簡単に外部からデータ取得
 iris2 = pd.read_clipboard()
-
-
