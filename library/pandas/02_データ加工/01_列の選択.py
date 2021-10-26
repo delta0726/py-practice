@@ -16,6 +16,7 @@
 # 5 正規表現による選択
 # 6 データ型による選択
 # 7 内包表記による選択
+# 8 特定列を先頭にする
 
 
 # 0 準備 --------------------------------------------------------------------
@@ -137,3 +138,34 @@ iris.dtypes
 #   --- 多くの場合は上記の方法で列選択が可能なのでユースケースは多くない
 
 iris.loc[:, lambda x: [c.startswith('Sepal') for c in x.columns]]
+
+
+# 8 特定列を先頭にする -----------------------------------------------------------
+
+# 特定列を先頭にする
+# --- リストのアンパックによる操作
+col_list = iris.columns.tolist()
+col_list.remove('Species')
+iris[['Species', *col_list]]
+
+# ＜参考＞
+# アンパックの動作
+# --- アンパックなし（リストが維持される）
+# --- アンパックあり（リストが解除される）
+['Species', col_list]
+['Species', *col_list]
+
+
+# 9 複数列を先頭にする -----------------------------------------------------------
+
+# 単純な方法
+col_lst = iris.columns.tolist()
+col_lst.remove('Petal.Length')
+col_lst.remove('Petal.Width')
+iris[['Petal.Length', 'Petal.Width', *col_lst]]
+
+# 内包表記の活用
+col_lst = df.columns.tolist()
+cols_to_front = ['model', 'category_1', 'category_2']
+l2 = [col for col in col_lst if col not in cols_to_front]
+df[[*cols_to_front, *l2]]
