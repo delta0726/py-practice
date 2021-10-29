@@ -17,6 +17,7 @@
 # 6 スペースやドットを含む列の扱い
 # 7 行列の転置
 # 8 データ型の変換
+# 9 データの置換
 
 
 # 0 準備 --------------------------------------------------------------------------
@@ -180,19 +181,43 @@ iris.head().T
 # https://note.nkmk.me/python-pandas-dtype-astype/
 
 
-# データフレーム全体を変換
-iris.astype(str).dtypes
-
-# 指定列を変換
+# 単一列のデータ変換
 iris.astype({'Sepal_Length': str}).dtypes
 
-# 指定列を変換
-iris.assign(Sepal_Length = lambda x: x["Sepal_Length"].astype(str)).dtypes
-
-# pandas関数を使ったデータ変換
-iris.assign(sepal_length = lambda x: pd.to_numeric(x.sepal_length))
-
-# カテゴリカルに変換
+# 複数列のデータ変換
 iris.astype({'Sepal_Length': 'str',
              'Sepal_Width': 'int',
              'Species': 'category'}).dtypes
+
+# データフレーム全体のデータ変換
+iris.astype(str).dtypes
+
+# 参考：ラムダ式を用いる方法
+# --- 冗長になるので特段の理由がなければ避ける
+iris.assign(Sepal_Length = lambda x: x["Sepal_Length"].astype(str)).dtypes
+
+
+# 9 データの置換 --------------------------------------------------------
+
+# ＜ポイント＞
+# - replaceメソッドの中で辞書形式で置換パターンを指定する
+
+
+# 単一要素の置換
+iris.replace({"Species": {'setosa': 'setosa2'}})
+
+# 複数要素の置換
+iris\
+    .replace({"Species": {'setosa': 'setosa2',
+                          'versicolor': 'versicolor2',
+                          'virginica': 'virginica2'}})
+
+# データフレーム全体を置換
+iris\
+    .assign(Species2 = lambda x: x["Species"])\
+    .replace({'setosa': 'setosa2'})
+
+# 参考：ラムダ式を用いる方法
+# --- 冗長になるので特段の理由がなければ避ける
+iris.assign(Species = lambda x: x["Species"].replace('setosa', 'setosa2'))
+
