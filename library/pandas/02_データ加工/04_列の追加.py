@@ -29,16 +29,15 @@ import pandas as pd
 from numpy import NaN
 
 
-# データ読み込み
-# --- irisデータセット（列名アンダースコア）
+# パス指定
 fpath = "library/pandas/csv"
-fname1 = "iris_col.csv"
-iris = pd.read_csv(fpath + "/" + fname1)
 
-# データ読み込み
-# --- irisデータセット（列名ドット）
-fpath = "library/pandas/csv"
-fname2 = "iris.csv"
+# ファイル名
+fname1 = "iris.csv"
+fname2 = "iris_dot.csv"
+
+# ファイル読込
+iris = pd.read_csv(fpath + "/" + fname1)
 iris_dot = pd.read_csv(fpath + "/" + fname2)
 
 
@@ -63,14 +62,12 @@ iris.assign(Sepal_Length = lambda x: x["Sepal_Length"].mean())
 # 複数列の更新
 iris.loc[:, ["Sepal_Length", "Sepal_Width"]]\
     .assign(Pct_Sepal_Length = lambda x: x["Sepal_Length"] / x["Sepal_Length"].sum() * 100,
-            Pct_Sepal_Width  = lambda x: x["Sepal_Width"] / x["Sepal_Width"].sum() * 100)\
-    .head()
+            Pct_Sepal_Width  = lambda x: x["Sepal_Width"] / x["Sepal_Width"].sum() * 100)
 
 # 辞書を活用した更新
 iris.loc[:, ["Sepal_Length", "Sepal_Width"]]\
     .assign(**{'Pct_Sepal_Length': lambda x: x["Sepal_Length"] / x["Sepal_Length"].sum(),
-               'Pct_Sepal_Width': lambda x: x["Sepal_Width"] / x["Sepal_Width"].sum()})\
-    .head()
+               'Pct_Sepal_Width': lambda x: x["Sepal_Width"] / x["Sepal_Width"].sum()})
 
 
 # 2 NaNの列を追加 --------------------------------------------------------------

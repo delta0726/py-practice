@@ -20,16 +20,16 @@
 import pandas as pd
 
 
-# データ読み込み
-# --- irisデータセット（列名ドット）
+# パスの指定
 fpath = "library/pandas/csv"
-fname1 = "iris.csv"
-iris = pd.read_csv(fpath + "/" + fname1)
 
-# データ読み込み
-# --- irisデータセット（列名アンダースコア）
-fname2 = "iris_col.csv"
-iris_col = pd.read_csv(fpath + "/" + fname2)
+# ファイル名
+fname1 = "iris.csv"
+fname2 = "iris_dot.csv"
+
+# ファイル読込
+iris = pd.read_csv(fpath + "/" + fname1)
+iris_dot = pd.read_csv(fpath + "/" + fname2)
 
 
 # 1 列を指定して列名変更 ------------------------------------------------------------
@@ -40,29 +40,34 @@ iris_col = pd.read_csv(fpath + "/" + fname2)
 
 # 単一列の列名変更
 # --- 列名にドットが含まれない場合
-iris_col.rename(columns={'Sepal_Length':'SL'})
-iris_col.rename(columns=dict(Sepal_Length='SL'))
+iris.rename(columns={'Sepal_Length':'SL'})
+iris.rename(columns=dict(Sepal_Length='SL'))
 
 # 単一列の列名変更
 # --- 列名にドットが含まれる場合（dict()は使えない）
-iris.rename(columns={'Sepal.Length':'SL'})
-# iris_col.rename(columns=dict('Sepal.Length'='SL'))
-
+iris_dot.rename(columns={'Sepal.Length':'SL'})
+# iris_dot.rename(columns=dict('Sepal.Length'='SL'))
 
 # 複数列の列名変更
-iris.rename(columns={'Sepal.Length':'SL', 'Sepal.Width':'SW',
-                     'Petal.Length':'PL', 'Petal.Width':'PW'})
+# --- 演算子で辞書を作成
+iris.rename(columns={'Sepal_Length':'SL', 'Sepal_Width':'SW',
+                     'Petal_Length':'PL', 'Petal_Width':'PW'})
 
-iris_col.rename(columns=dict(Sepal_Length='SL', Sepal_Width='SW',
-                             Petal_Length='PL', Petal_Width='PW'))
+# 複数列の列名変更
+# --- dict()で辞書を作成
+iris.rename(columns=dict(Sepal_Length='SL', Sepal_Width='SW',
+                         Petal_Length='PL', Petal_Width='PW'))
 
 
 # 2 列名のパターン変更 -------------------------------------------------------------
 
+# ＜ポイント＞
+# - 文字列のメソッドを活用して列名を変更することが可能
+
+
 # 列名を大文字に変換
 iris.rename(columns=str.upper)
 iris.rename(columns=lambda x: x.upper())
-
 
 # 列名の一部を置換
 iris.rename(columns=lambda x: x.replace('.', '_').title())

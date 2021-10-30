@@ -17,6 +17,7 @@
 # 6 データ型による選択
 # 7 内包表記による選択
 # 8 特定列を先頭にする
+# 9 複数列を先頭にする
 
 
 # 0 準備 --------------------------------------------------------------------
@@ -25,39 +26,32 @@
 import pandas as pd
 
 
-# データ読み込み
-# --- irisデータセット（NAなし）
+# パス指定
 fpath = "library/pandas/csv"
+
+# ファイル名
 fname1 = "iris.csv"
+fname2 = "iris_dot.csv"
+fname3 = "iris_na.csv"
+
+# ファイル読込
 iris = pd.read_csv(fpath + "/" + fname1)
-
-# データ読み込み
-# --- irisデータセット（NAなし）
-fname2 = "iris_na.csv"
-iris_na = pd.read_csv(fpath + "/" + fname2)
-
-# データ読み込み
-# --- irisデータセット（列名アンダースコア）
-fname3 = "iris_col.csv"
-iris_col = pd.read_csv(fpath + "/" + fname3)
+iris_dot = pd.read_csv(fpath + "/" + fname2)
+iris_na = pd.read_csv(fpath + "/" + fname3)
 
 
 # 1 Seriesによる選択 ---------------------------------------------------------
 
 # ＜ポイント＞
-# - PandasSeriesとして列を選択する場合は演算子を用いる
-# - パイプによる選択は直感的だがエラーを起こすケースがある（列名にドットを含む場合）
+# - PandasSeriesとして列を選択する場合はブラケットで個別要素を指定する
+# - locプロパティでも列を選択することができる
 
-# 演算子による選択
-iris['Sepal.Length']
+# ブラケットによる選択
+# --- ブラケットで個別を指定（一重のブラケット）
+iris['Sepal_Length']
 
 # locによる選択
-iris.loc[:, 'Sepal.Length']
-
-# パイプによる選択
-# --- 列名に"."が含まれるとエラーになる
-iris.Sepal.Length
-iris_col.Sepal_Length
+iris.loc[:, 'Sepal_Length']
 
 
 # 2 列名による選択 ------------------------------------------------------------
@@ -65,15 +59,18 @@ iris_col.Sepal_Length
 # ＜ポイント＞
 # - locプロパティを使って列選択を行うのが一般的（Pythonではlocを列選択に使う人が多い）
 # - SQLではfilterは行選択だが、Pandasでは列選択なので注意
+# - ブラケットでデータフレームとして抽出する場合は列をリストで指定する
+
 
 # locによる選択
-iris.loc[:, ['Sepal.Length', 'Petal.Width', 'Species']]
+iris.loc[:, ['Sepal_Length', 'Petal_Width', 'Species']]
 
 # filterによる選択
-iris.filter(['Sepal.Length', 'Petal.Width', 'Species'])
+iris.filter(['Sepal_Length', 'Petal_Width', 'Species'])
 
-# 演算子による選択
-iris[['Sepal.Length', 'Petal.Width', 'Species']]
+# ブラケットによる選択
+# --- ブラケットでリストを指定（二重のブラケット）
+iris[['Sepal_Length', 'Petal_Width', 'Species']]
 
 
 # 3 番号による選択 ------------------------------------------------------------
@@ -148,8 +145,7 @@ col_list = iris.columns.tolist()
 col_list.remove('Species')
 iris[['Species', *col_list]]
 
-# ＜参考＞
-# アンパックの動作
+# 参考：アンパックの動作
 # --- アンパックなし（リストが維持される）
 # --- アンパックあり（リストが解除される）
 ['Species', col_list]

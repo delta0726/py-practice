@@ -37,10 +37,7 @@ iris = pd.read_csv(fpath + "/" + fname1)
 iris.drop("Species", axis=1)
 
 # 複数列の削除
-iris.drop(["Sepal.Length", "Species"], axis=1)
-
-# 特定文字を検索して削除
-iris.drop()
+iris.drop(["Sepal_Length", "Species"], axis=1)
 
 
 # 2 列名パターンで列削除 ------------------------------------------------------------
