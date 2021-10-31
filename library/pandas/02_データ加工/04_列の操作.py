@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Category  : Grammar of Pandas
 # Chapter   : 02 データ加工
-# Title     : 列の追加
+# Title     : 列の操作
 # Created by: Owner
 # Created on: 2021/10/29
 # ******************************************************************************
@@ -218,3 +218,26 @@ iris\
 # --- 冗長になるので特段の理由がなければ避ける
 iris.assign(Species = lambda x: x["Species"].replace('setosa', 'setosa2'))
 
+
+# 10 欠損値の補完 -------------------------------------------------------
+
+# ＜ポイント＞
+# - 欠損値の補完はfillnaメソッドで行う
+
+
+# 一律に補完する
+iris_na.fillna(value=0)
+
+# 列ごとの補完方法を指定する
+iris_na\
+    .fillna(value={'sepal_length': 0,
+                   'sepal_width': 0,
+                   'petal_length': 0,
+                   'petal_width': 0,
+                   'species': '-'})
+
+# 前方の値で補完する
+iris_err.fillna(method='ffill')
+
+# 後方の値で補完する
+iris_err.fillna(method='bfill')
