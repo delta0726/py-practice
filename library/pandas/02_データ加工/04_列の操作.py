@@ -178,6 +178,8 @@ iris.head().T
 # https://note.nkmk.me/python-pandas-dtype-astype/
 
 
+# メソッドによる変換 -------------------------------------------
+
 # 単一列のデータ変換
 iris.astype({'Sepal_Length': str}).dtypes
 
