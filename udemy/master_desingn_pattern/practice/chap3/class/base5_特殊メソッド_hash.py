@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : デザインパターン・マスター講座
 # Chapter     : 3 Python基本文法講座
-# Theme       : 59 特殊メソッド1
+# Theme       : 59 特殊メソッド1  __hash__
 # Creat Date  : 2022/2/6
 # Final Update:
 # URL         : https://www.udemy.com/course/python-mx/
