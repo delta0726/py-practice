@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : デザインパターン・マスター講座
 # Chapter     : 3 Python基本文法講座
-# Theme       : 53 クラスの継承
+# Theme       : 62 - 63 クラスの継承
 # Creat Date  : 2022/2/7
 # Final Update:
 # URL         : https://www.udemy.com/course/python-mx/
