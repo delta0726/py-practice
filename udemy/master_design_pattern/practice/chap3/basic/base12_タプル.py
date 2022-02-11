@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : デザインパターン・マスター講座
 # Chapter     : 3 Python基本文法講座
-# Theme       : タプル
+# Theme       : 12 タプル
 # Creat Date  : 2022/2/11
 # Final Update:
 # URL         : https://www.udemy.com/course/python-mx/
