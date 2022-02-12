@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : Python3.8マスター講座
 # Chapter     : 6 基本的な標準ライブラリ
-# Theme       : 95 randomモジュール
+# Theme       : randomモジュール
 # Creat Date  : 2022/2/13
 # Final Update:
 # URL         : https://www.udemy.com/course/python-python/
