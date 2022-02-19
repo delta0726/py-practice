@@ -20,7 +20,7 @@
 # - スクリプトの中身をコンソールに表示したい場合は"-s"を付ける
 #   --- pytest I:/Project/Python/py_practice/udemy/pytest_seminar/practice/sec2/test_sec2_1.py -s
 
-# - スクリプトをディレクトリに対して適用すると全てのファイルに適用される
+# - スクリプトをディレクトリに対して適用すると"test_"で始まる全てのファイルの"test_"ではじまるスクリプトが実行される
 #   --- pytest I:/Project/Python/py_practice/udemy/pytest_seminar/practice/sec2
 
 
