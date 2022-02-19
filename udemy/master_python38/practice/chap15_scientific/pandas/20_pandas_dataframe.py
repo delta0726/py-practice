@@ -9,7 +9,7 @@
 
 
 # ＜概要＞
-# - PandasのSeriesオブジェクトの基本操作を確認する
+# - Pandas DataFrameの基本操作を確認する
 
 
 # ＜目次＞
