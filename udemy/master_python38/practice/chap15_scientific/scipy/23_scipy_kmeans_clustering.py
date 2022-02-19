@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : Python3.8マスター講座
 # Chapter     : 15 科学技術計算ライブラリ
-# Theme       : Scipyによるk-meansClassタリング
+# Theme       : Scipyによるk-meansクラスタリング
 # Creat Date  : 2022/2/20
 # Final Update:
 # URL         : https://www.udemy.com/course/python-python/
@@ -45,7 +45,7 @@ centroids, distortion = kmeans(data, 2)
 print(centroids)
 print(distortion)
 
-# Classに分類
+# クラスに分類
 codes, distances = vq(data, centroids)
 print(codes)
 
