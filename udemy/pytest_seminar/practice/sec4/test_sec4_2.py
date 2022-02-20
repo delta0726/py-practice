@@ -34,10 +34,10 @@
 # メイン処理 --------------------------------------------------------------
 
 # ライブラリ
-# --- fixtureを使えるようにする
 import pytest
 
-# 前処理/後処理
+# 関数定義
+# --- 前処理/後処理
 @pytest.fixture()
 def setup_processing(request):
     print("setup_processing")
