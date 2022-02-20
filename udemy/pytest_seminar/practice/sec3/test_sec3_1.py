@@ -10,8 +10,8 @@
 
 # ＜ポイント＞
 # - 前処理/後処理の関数のテストに対する前処理と後処理を行う関数を定義する
-#   --- 前処理のメソッド名：setup_function
-#   --- 後処理のメソッド名：teardown_function
+#   --- 前処理の関数名：setup_function
+#   --- 後処理の関数名：teardown_function
 
 
 # ＜実行コマンド＞
