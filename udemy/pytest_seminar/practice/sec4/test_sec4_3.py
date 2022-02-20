@@ -36,6 +36,7 @@ import pytest
 # 関数定義
 # --- 前処理/後処理
 # --- scopeはフィクスチャ関数が実行される粒度を指定
+# --- scopeのデフォルト値は"function"になっている
 @pytest.fixture(scope="class")
 def setup_processing(request):
     print("setup_processing")
