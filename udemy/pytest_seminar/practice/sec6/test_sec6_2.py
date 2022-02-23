@@ -9,13 +9,14 @@
 
 
 # ＜ポイント＞
-# - mockは特定の関数が未完成な関数を参照している場合のテストに使用する
+# - mockは特定の関数が未完成な関数を参照している場合に代替物を作成してテストに使用する
 # - mockは疑似的などの意味を持つ
 
 
 # ＜実行コマンド＞
 # - ターミナルより実行
-# pytest I:/Project/Python/py_practice/udemy/pytest_seminar/practice/sec6/test_sec6_2.py -v
+#
+
 
 
 # ＜出力結果＞
@@ -39,12 +40,11 @@ def trans():
     return t
 
 # 関数定義（日本語を英語に変換）
-# --- mockerを設定
+# --- mockerを設定するとreturn_valueで設定した値が返される
 def test_japanese_to_english(trans, mocker):
-    mocker.patch("practice.sec6.translator2.GoogleTranslator.convert", return_value = "hello world!")
+    mocker.patch("translator2.GoogleTranslator.convert", return_value = "hello world!")
     text_translated = trans.convert("私の名前は佐藤です。", "日本語", "英語")
     print(text_translated)
-    # assert text_translated == "My name is Sato."
 
 # # 関数定義（英語を日本語に変換）
 # # --- mockerを設定
@@ -52,4 +52,4 @@ def test_japanese_to_english(trans, mocker):
 #     mocker.patch("translator.GoogleTranslator.get_language_id", return_value = "ja")
 #     text_translated = trans.convert("私の名前は佐藤です。", "日本語", "英語")
 #     print(text_translated)
-#     # assert text_translated == "私の名前は佐藤です。"
+

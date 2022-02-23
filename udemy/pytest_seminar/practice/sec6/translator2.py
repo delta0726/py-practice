@@ -21,3 +21,7 @@ class GoogleTranslator():
 
     def convert(self, text_original, language_original_name, language_translated_name):
         pass
+        # language_original_id = self.get_language_id(language_original_name)
+        # language_translated_id = self.get_language_id(language_translated_name)
+        # text_translated = self.translator.translate(text_original, src=language_original_id, dest=language_translated_id)
+        # return text_translated.text
