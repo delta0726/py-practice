@@ -1,7 +1,7 @@
 # ******************************************************************************
 # Course      : デザインパターン・マスター講座
 # Chapter     : 5 SOLIDの原則
-# Theme       : 2_解放閉鎖の原則
+# Theme       : 2 解放閉鎖の原則
 # Creat Date  : 2022/2/24
 # Final Update:
 # URL         : https://www.udemy.com/course/python-mx/
