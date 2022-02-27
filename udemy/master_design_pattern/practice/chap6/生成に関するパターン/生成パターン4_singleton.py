@@ -25,7 +25,8 @@
 
 # ＜目次＞
 # 1 通常のクラス定義
-# 2 Sigletonによるクラス定義
+# 2 Sigletonによるクラス定義（その1）
+# 3 Sigletonによるクラス定義（その2）
 
 
 # 1 通常のクラス定義 ---------------------------------------------
@@ -49,7 +50,7 @@ print(a == b)
 print(id(a), id(b))
 
 
-# 2 Sigletonによるクラス定義 -------------------------------------
+# 2 Sigletonによるクラス定義（その1） -------------------------------------
 
 # ＜ポイント＞
 # - 複数のインスタンスを生成うぃても同じオブジェクトとして扱う
@@ -91,3 +92,57 @@ print(id(a), id(b))
 a.database_url = '128.1.1.1:5678'
 print(a.database_url)
 print(b.database_url)
+
+
+# 2 Sigletonによるクラス定義（その2） -------------------------------------
+
+# ＜ポイント＞
+# - その1よりも簡単な実装方法（__new__ を使わない）
+# - コンストラクタをプライベートにする
+#   ---- Pythonではプライベート化できないので使えないようにする
+
+
+class DataBase3:
+    __instance = None
+
+    def __init__(self):
+        raise RuntimeError('このクラスのコンストラクタは呼び出せません')
+
+    @classmethod
+    def get_instance(cls, database_url=None):
+        if cls.__instance is None:
+            cls.__instance = cls.__new__(cls)
+        if database_url:
+            cls.__instance.__database_url = database_url
+        return cls.__instance
+
+    @property
+    def database_url(self):
+        return self.__database_url
+
+    @database_url.setter
+    def database_url(self, database_url):
+        self.__database_url = database_url
+
+    def connect(self):
+        # Databaseに接続
+        pass
+
+
+# インスタンス生成
+# --- コンストラクタを直接呼び出すとエラー
+# a = DataBase3()
+
+# インスタンス生成
+# --- クラスメソッドであるget_instance()を使う
+a = DataBase3.get_instance('128.1.1.1:1111')
+b = DataBase3.get_instance()
+
+# 確認
+print(a == b)
+print(id(a), id(b))
+print(a.database_url, b.database_url)
+
+# URLの指定
+a.database_url = '128.1.1.1:5678'
+print(a.database_url, b.database_url)
