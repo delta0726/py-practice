@@ -3,7 +3,7 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 66 ポリモーフィズム
 # Creat Date  : 2022/2/8
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -31,7 +31,9 @@ from abc import abstractmethod, ABCMeta
 # - 抽象メソッドはスーパークラスのメソッドに記述する（中身は定義しない）
 
 
-class Human(metaclass=ABCMeta):  # 親クラス
+# スーパークラスの定義
+# --- 抽象メソッドには@abstractmethodをつけて実装は行わない
+class Human(metaclass=ABCMeta):
 
     def __init__(self, name):
         self.name = name
@@ -66,9 +68,9 @@ class Man(Human):
 # 3 ポリモーフィズム -----------------------------------------------
 
 # ＜ポイント＞
-# - humanクラスは入力値によってManクラスかWomanクラスか分からない
+# - humanクラスは入力値によってManクラスかWomanクラスが作られる（事前にクラスが分からない）
 # - しかし、以下のプログラムはどちらか分からなくても実行できる
-#   --- 同じメソッドが抽象クラスで実装されているため
+#   --- 抽象クラスを介して同じ名称のメソッドが実装されているため
 
 
 # 数値入力
