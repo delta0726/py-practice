@@ -9,7 +9,7 @@
 
 
 # ＜概要＞
-# - 特殊メソッドはクラスに定型的な機能を持たせるために実装する
+# - 特殊メソッドはクラスに定型的な機能を持たせるために実装するメソッド
 # - __bool__はインスタンスにif文が適用された場合の振舞いを定義する
 
 
@@ -40,11 +40,11 @@ class Human:
         return True if self.age >= 20 else False
 
 
-
 # 2 __bool__を実行する ----------------------------------------------
 
 # ＜ポイント＞
 # - __bool__はインスタンスにif文が適用された場合に発動される
+#   --- 定義した基準に基づいてTrue/Falseを返す
 
 
 # インスタンス生成
@@ -52,13 +52,6 @@ man1 = Human(name='Taro', age=20, phone_number='08011111111')
 man2 = Human(name='Taro', age=18, phone_number='08011111111')
 
 # 確認
-if man1:
-    print('ageが20以上')
-else:
-    print('ageが20以下')
-
-# if文
-if man2:
-    print('ageが20以上')
-else:
-    print('ageが20以下')
+# --- インスタンスのageに対して判定をおっこなう
+print('ageが20以上') if man1 else print('ageが20以下')
+print('ageが20以上') if man2 else print('ageが20以下')
