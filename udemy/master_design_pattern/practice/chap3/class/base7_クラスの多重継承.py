@@ -25,11 +25,11 @@ class ClassA:
 
     def __init__(self, name):
         self.a_name = name
-    
+
     def print_a(self):
         print('ClassAのメソッド実行')
         print('a = {}'.format(self.a_name))
-    
+
     def print_hi(self):
         print('A hi')
 
@@ -40,11 +40,11 @@ class ClassB:
 
     def __init__(self, name):
         self.b_name = name
-    
+
     def print_b(self):
         print('ClassBのメソッド実行')
         print('b = {}'.format(self.b_name))
-    
+
     def print_hi(self):
         print('B hi')
 

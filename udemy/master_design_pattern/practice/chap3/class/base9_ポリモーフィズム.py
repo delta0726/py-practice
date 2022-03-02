@@ -31,11 +31,11 @@ from abc import abstractmethod, ABCMeta
 # - 抽象メソッドはスーパークラスのメソッドに記述する（中身は定義しない）
 
 
-class Human(metaclass=ABCMeta): # 親クラス
+class Human(metaclass=ABCMeta):  # 親クラス
 
     def __init__(self, name):
         self.name = name
-    
+
     @abstractmethod
     def say_something(self):
         pass
@@ -52,13 +52,13 @@ class Human(metaclass=ABCMeta): # 親クラス
 
 
 class Woman(Human):
-    
+
     def say_something(self):
         print('女性: 名まえは={}'.format(self.name))
 
 
 class Man(Human):
-    
+
     def say_something(self):
         print('男性: 名まえは={}'.format(self.name))
 
