@@ -3,7 +3,7 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 60 特殊メソッド2 __bool__
 # Creat Date  : 2022/2/6
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
