@@ -3,7 +3,7 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 67 プライベート変数
 # Creat Date  : 2022/2/8
-# Final Update:
+# Final Update: 2022/3/3
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -13,6 +13,8 @@
 # - プライベート変数はアクセスできない変数のことをいう
 #   --- アンダースコア2つ(__)を変数名の前に付ける
 #   --- 厳密にはアクセス可能であり、Pythonでは厳密なプライベート変数はない
+# - プライベート変数であっても外部から値の変更は可能
+#   --- アクセスコントロールする手段としてgetterとsetterがある（後述）
 
 
 # ＜目次＞
@@ -29,6 +31,8 @@
 # クラス定義
 class Human1:
 
+    class_val = 'Human'
+
     def __init__(self, name, age):
         # インスタンス変数として定義
         self.name = name
@@ -41,8 +45,10 @@ class Human1:
 # インスタンス生成
 human1 = Human1(name='Taro', age=15)
 
-# 変数アクセス
-# --- 外部からもアクセス可能
+# 変数へのアクセス（外部からもアクセス可能）
+# --- クラス変数
+# --- インスタンス変数
+human1.class_val
 human1.name
 human1.age
 
@@ -60,11 +66,13 @@ human1.print_msg()
 
 # クラス定義
 class Human2:
-    # プライベート変数の定義
+    # クラス変数
+    # --- プライベート変数の定義
     __class_val = 'Human'
 
     def __init__(self, name, age):
-        # プライベート変数として定義
+        # インスタンス変数
+        # --- プライベート変数として定義
         self.__name = name
         self.__age = age
 
@@ -81,5 +89,9 @@ human2.__name
 human2.__age
 
 # メソッドの実行
-# --- クラス内ではアクセス可能
+# --- クラス内からはアクセス可能
 human2.print_msg()
+
+# ＜参考＞
+# 厳密には以下の方法で変数にアクセス可能
+# human2._Human2__name
