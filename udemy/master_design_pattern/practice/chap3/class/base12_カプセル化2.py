@@ -14,6 +14,12 @@
 # - --- getterとsetterを定義して変数にアクセスできないようにする（カプセル化）
 
 
+# ＜カプセル化の方法＞
+# - ここではデコレータを用いてgetter/setterを作成する（一般的な方法）
+#   --- @property   : getter
+#   --- @var.setter : setter
+
+
 # ＜目次＞
 # 1 クラス定義
 # 2 クラス実行
@@ -22,8 +28,9 @@
 # 1 クラス定義 ----------------------------------------------------------
 
 # ＜ポイント＞
-# - デコレータだけでgetter/setterを設定することが可能（property関数は不要）
-#   --- こちらの記法が一般的に用いられる
+# - デコレータだけでgetter/setterを設定することが可能
+#   --- property関数は不要
+#   --- デコレータを付けることでsetter/getterの両方でname()やage()の同名が使える
 
 
 class Human:
@@ -35,24 +42,28 @@ class Human:
         self.__age = age
 
     # getter
+    # --- 変数を取得
     @property
     def name(self):
         print('getter nameが呼ばれました')
         return self.__name
 
     # getter
+    # --- 変数を取得
     @property
     def age(self):
         print('getter ageを呼ばれました')
         return self.__age
 
     # setter
+    # --- プライベート変数を変更
     @name.setter
     def name(self, name):
         print('setter nameが呼ばれました')
         self.__name = name
 
     # setter
+    # --- プライベート変数を変更
     # --- 条件文を介在させることも可能
     @age.setter
     def age(self, age):
@@ -67,6 +78,7 @@ class Human:
 
 # ＜ポイント＞
 # - 操作面ではカプセル化1と同様
+#   --- property()を用いないため動作が直感的（デバッガーを使って確認）、
 
 
 # インスタンス生成
