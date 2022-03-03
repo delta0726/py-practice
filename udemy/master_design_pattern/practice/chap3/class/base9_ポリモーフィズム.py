@@ -9,9 +9,19 @@
 
 
 # ＜概要＞
+# - ｢ポリモーフィズム｣を実現するための手段として｢抽象クラス｣を用いる
+
+
+# ＜抽象クラスとは＞
+# - クラス自体は実装を持たず、メソッドの名前と体系のみを抽象的に定義するクラス
+#   --- スーパークラスで定義されるもので、継承の概念の中で使用される
+# -- 抽象クラスで抽象化を指定したメソッドは｢抽象メソッド｣と呼ばれる
+#   --- 抽象メソッドはサブクラスでの実装が強制される
+
+
+# ＜ポリモーフィズムとは＞
 # - サブクラスを複数作成し、同じメソッドを定義して呼び出す際にどのクラスかを意識せずに呼び出すこと
-#   --- 抽象クラスで抽象メソッドを定義することにより実現している
-#   --- 事前に選択されるクラスが分からなくても、同じ名称のメソッドを定義するので支障が出ない
+#   --- 同じ名称のメソッドを定義するので、事前に選択されるクラスが分からなくても動作する
 
 
 # ＜目次＞
@@ -34,7 +44,7 @@ from abc import abstractmethod, ABCMeta
 
 
 # スーパークラスの定義
-# --- 抽象メソッドには@abstractmethodをつけて実装は行わない
+# --- 抽象メソッドには@abstractmethodをつける（pass文のみを記述して実装は行わない）
 class Human(metaclass=ABCMeta):
 
     def __init__(self, name):
@@ -57,6 +67,9 @@ class Human(metaclass=ABCMeta):
 
 class Woman(Human):
 
+    def say_dummy(self):
+        print('女性: 名まえは={}'.format(self.name))
+
     def say_something(self):
         print('女性: 名まえは={}'.format(self.name))
 
@@ -65,6 +78,16 @@ class Man(Human):
 
     def say_something(self):
         print('男性: 名まえは={}'.format(self.name))
+
+
+class Woman_Err(Human):
+    pass
+
+
+# エラー確認
+# --- Womanクラスにsay_something()を含めないで定義するとエラーとなる
+# --- TypeError: Can't instantiate abstract class Woman with abstract methods say_something
+human = Woman(name='Hanako')
 
 
 # 3 ポリモーフィズム -----------------------------------------------
