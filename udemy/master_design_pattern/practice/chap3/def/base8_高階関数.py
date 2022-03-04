@@ -8,8 +8,9 @@
 # ******************************************************************************
 
 
-# ＜高階関数とは＞
-# - 関数の引数に関数を取るような関数のこと
+# ＜概要＞
+# - 関数はオブジェクトの1つなので、関数の引数として扱うなど他のオブジェクトと同様の操作が可能
+# - 高階関数とは関数の引数に関数を取るような関数のことを指す
 #   --- map()が典型例（演算処理を複数行にわたって実行するなど）
 
 
@@ -23,12 +24,13 @@
 # 1 オブジェクトとしての関数 --------------------------------------------
 
 # ＜ポイント＞
-# - 関数は数値と同じくオブジェクトの1つなのでコピーや参照のような操作ができる
+# - 関数は数値と同じくオブジェクトの1つなので｢コピー｣や｢参照｣のような操作ができる
 
 
 # 関数定義
 def print_hello():
     print('hello')
+
 
 # 関数の参照
 # --- 新しい関数オブジェクトを作成
@@ -49,9 +51,11 @@ say_hallo()
 def print_hello():
     print('hello')
 
+
 # 関数定義2
 def print_goodbye():
     print('goodbye')
+
 
 # リストに格納
 var = ['AA', 'BB', print_hello, print_goodbye]
@@ -77,10 +81,12 @@ var[3]()
 def print_world(msg):
     print('{} world'.format(msg))
 
+
 # 関数定義
 # --- 実行する関数
 def print_hello(func):
     func('hello')
+
 
 # 関数実行
 print_hello(print_world)
@@ -98,10 +104,12 @@ print_hello(print_world)
 def print_konnichiwa():
     print('こんにちは')
 
+
 # 関数定義
 # --- 実行する関数
 def print_hello():
     return print_konnichiwa
+
 
 # 関数実行
 var = print_hello()
