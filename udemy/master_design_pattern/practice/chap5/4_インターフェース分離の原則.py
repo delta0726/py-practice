@@ -3,7 +3,7 @@
 # Chapter     : 5 SOLIDの原則
 # Theme       : 4 インターフェース分離の原則
 # Creat Date  : 2022/2/26
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -23,6 +23,7 @@
 # 0 準備
 # 1 原則に準じない実装
 # 2 原則に準じた実装
+# 3 動作確認
 
 
 # 0 準備 --------------------------------------------------
@@ -40,7 +41,7 @@ from abc import ABCMeta, abstractmethod
 
 
 # スーパークラスの定義
-# --- インターフェース（抽象メソッドで定義）
+# --- インターフェースとして抽象メソッドを定義
 class Athlete(metaclass=ABCMeta):
 
     @abstractmethod
@@ -57,6 +58,7 @@ class Athlete(metaclass=ABCMeta):
 
 
 # サブクラスの定義
+# --- 必要ない抽象メソッドを実装しなければならない
 class Athlete1(Athlete):
 
     def swim(self):
@@ -79,18 +81,26 @@ john.swim()
 # 2 原則に準じた実装 --------------------------------------------------
 
 # ＜ポイント＞
-# - 最上位クラスはメタクラスを指定しつつ、抽象メソッドは各インターフェースで定義する
-#   --- 最上位クラスはABCMetaを継承するだけ
+# - サブクラスで抽象メソッドによる無駄な実装が入らないようにする
+#   --- インターフェースを分離する(SwimAthlete/JumpAthlete)
+#   --- サブクラスは必要なインターフェースのみを継承する
+
+
+# ＜クラス構成＞
+# - Athlete(metaclass=ABCMeta)
+#   --- SwimAthlete(Athlete)
+#   --- JumpAthlete(Athlete)
+#       --- Athlete1(SwimAthlete)
+#       --- Athlete2(SwimAthlete, JumpAthlete)
 
 
 # スーパークラスの定義
-# --- 最上位クラス
+# --- 抽象クラス
 class Athlete(metaclass=ABCMeta):
     pass
 
 
-# サブクラス定義
-# --- インターフェース
+# インターフェースの定義
 # --- 抽象メソッドを指定
 class SwimAthlete(Athlete):
     @abstractmethod
@@ -98,8 +108,7 @@ class SwimAthlete(Athlete):
         pass
 
 
-# サブクラス定義
-# --- インターフェース
+# インターフェースの定義
 # --- 抽象メソッドを指定
 class JumpAthlete(Athlete):
     @abstractmethod
@@ -112,16 +121,14 @@ class JumpAthlete(Athlete):
 
 
 # サブクラスの定義
-# --- クラス名に応じた属性をクラス継承する
-# --- 抽象クラスの実装
+# --- 必要なメソッドのみを実装
 class Athlete1(SwimAthlete):
     def swim(self):
         print('I swim')
 
 
 # サブクラスの定義
-# --- クラス名に応じた属性をクラス継承する
-# --- 抽象クラスの実装
+# --- 必要なメソッドのみを実装
 class Athlete2(SwimAthlete, JumpAthlete):
 
     def swim(self):
@@ -133,6 +140,8 @@ class Athlete2(SwimAthlete, JumpAthlete):
     def long_jump(self):
         print('I long jump')
 
+
+# 3 動作確認 ------------------------------------------------------------
 
 # インスタンス生成
 # --- スイマー
