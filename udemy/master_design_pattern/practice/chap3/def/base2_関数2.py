@@ -3,9 +3,16 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 40 関数2（応用）
 # Creat Date  : 2022/2/4
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
+
+
+# ＜概要＞
+# - 関数の引数にはデフォルト値を設定することができる
+# - 引数の長さが変わる場合には可変長引数として定義することができる
+#   --- 可変長タプル: *args   （引数名がない引数に使用）
+#   --- 可変長辞書  : **kwargs（引数名がある引数に使用）
 
 
 # ＜目次＞
@@ -18,9 +25,14 @@
 
 # 1 引数のデフォルト値 -----------------------------------------------
 
+# ＜ポイント＞
+# - 引数にデフォルト値を設定する
+
+
 # 関数定義
 def sample(arg1, arg2=100):
     print(arg1, arg2)
+
 
 # 関数実行
 # --- arg2を指定しない場合はデフォルト値が適用される
@@ -32,19 +44,20 @@ sample(200, 300)
 # 2 可変長タプルの引数 ------------------------------------------------
 
 # ＜ポイント＞
-# - 引数に可変長タプル(*arg2)を指定すると、割り当てられた引数以外はタプルに格納される
+# - 引数に可変長タプル(*args)を指定すると、割り当てられた引数以外はタプルに格納される
 #   --- 引数の最後に指定するのがセオリー（1つしか指定できない）
 #   --- 引数名を指定した場合はエラーなる
 
 
 # 関数定義
-def spam(arg1, *arg2):
-    print("arg1 = {}, arg2 = {}".format(arg1, arg2))
-    print(type(arg2))
+def spam(arg1, *args):
+    print("arg1 = {}, args = {}".format(arg1, args))
+    print(type(args))
+
 
 # 関数実行
-# --- 問題なく動作
-# --- 引数名を指定した場合はエラー
+# --- 問題なく動作（arg1より後を全て*arg2としてタプルに格納）
+# --- 引数名を指定した場合はエラー（*arg2はあるがarg2は存在しないためTypeErrorとなる）
 spam(1, 2, 3, 4, 5)
 spam(arg1=1, arg2=2, arg3=3, arg4=4, arg5=5)
 
@@ -59,13 +72,16 @@ spam(arg1=1, arg2=2, arg3=3, arg4=4, arg5=5)
 
 
 # 関数定義
-def spam_2(arg1, **arg2):
-    print('arg1 = {}, arg2 = {}'.format(arg1, arg2))
-    print(type(arg2))
+def spam_2(arg1, **kwargs):
+    print('arg1 = {}, kwargs = {}'.format(arg1, kwargs))
+    print(type(kwargs))
+
 
 # 関数実行
-# --- 問題なく動作
+# --- 引数名を指定した場合は動作する
+# --- 引数名を指定した場合は動作する（arg1は省略可能）
 # --- 引数名を指定しない場合はエラー
+spam_2(arg1=1, arg2=2, arg3=3, arg4=4, arg5=5)
 spam_2(3, name='Taro', age=20)
 spam_2(3, 'Taro', 20)
 
@@ -74,19 +90,20 @@ spam_2(3, 'Taro', 20)
 
 # ＜ポイント＞
 # - 引数名を指定しないものはタプル、引数名を指定したものは辞書に格納される
-#   --- 可変長タプル⇒可変長辞書の順で指定する
+#   --- 可変長タプル(*arg)⇒可変長辞書(**arg)の順で指定する
 #   --- 実行側では関数の引数に沿った順番でしていないとエラーとなる
 
 
 # 関数定義
-def spam_3(arg1, *arg2, **arg3):
-    print(arg1, arg2, arg3)
-    print(type(arg2))
-    print(type(arg3))
+def spam_3(arg1, *args, **kwargs):
+    print(arg1, args, kwargs)
+    print(type(args))
+    print(type(kwargs))
 
 
 # 関数実行
 spam_3(1, 2, 3, 4, 5, name='Taro', age=15)
+
 
 # 参考
 # --- 関数の引数に沿った順番でしていないとエラーとなる
@@ -103,6 +120,7 @@ spam_3(1, 2, 3, 4, 5, name='Taro', age=15)
 # 関数定義
 def sample_2():
     return 1, 2, 3
+
 
 # 関数実行
 a, b, c = sample_2()
