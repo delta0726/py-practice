@@ -3,7 +3,7 @@
 # Chapter     : 5 SOLIDの原則
 # Theme       : 5 依存性逆転の原則
 # Creat Date  : 2022/2/23
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -11,7 +11,7 @@
 # ＜依存性逆転の原則＞
 # - ソフトウェアモジュール間の依存関係を切り離すための方法
 # - 高水準モジュールは低水準モジュールに依存してはいけない（両者は抽象化に依存すべき）
-# - 詳細は抽象化に依存すべきである（「抽象化は詳細に依存すべきでない）
+#   --- 継承する場合はなるべく上位クラスを継承するようにする
 
 
 # ＜メリット＞
@@ -22,6 +22,7 @@
 # 0 準備
 # 1 原則に準じない実装
 # 2 原則に準じた実装
+# 3 動作確認
 
 
 # 0 準備 -------------------------------------------------------------
@@ -35,6 +36,13 @@ from abc import ABCMeta, abstractmethod
 # ＜ポイント＞
 # - メソッドが直接クラスを参照している（クラス継承が適切に行われていない）
 # - クラスの上位/下位を無視して参照が行われている（依存関係が複雑化）
+
+
+# ＜クラス構成＞
+# - Book
+#  - Formatter
+#  - Formatter2
+# Printer
 
 
 # 上位クラス
@@ -79,6 +87,17 @@ printer.print(book)
 
 
 # 2 原則に準じた実装 -------------------------------------------------
+
+
+# ＜クラス構成＞
+# - IBook(metaclass=ABCMeta)
+#   - Book(IBook)
+#   - EBook(IBook)
+# - IFormatter(metaclass=ABCMeta)
+#   - HtmlFormatter(IFormatter)
+#   - XmlFormatter(IFormatter)
+# - Printer
+
 
 # インターフェース定義
 # --- 慣例としてクラス名に"I"を付ける
@@ -149,13 +168,17 @@ class Printer:
         print(formatted_book)
 
 
+# 3 動作確認 --------------------------------------------------------------
+
 # インスタンス生成
 book = Book('My Book')
+
+# HTML
 html_formatter = HtmlFormatter()
 html_printer = Printer(html_formatter)
 html_printer.print(book)
 
-#
+# XML
 xml_formatter = XmlFormatter()
 xml_printer = Printer(xml_formatter)
 xml_printer.print(book)
