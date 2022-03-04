@@ -3,15 +3,15 @@
 # Chapter     : 5 SOLIDの原則
 # Theme       : 2 解放閉鎖の原則
 # Creat Date  : 2022/2/24
-# Final Update:
+# Final Update: 2022/3/4
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
 
 # ＜解放閉鎖の原則＞
 # - クラス/モジュール/関数は拡張に対して開いていて、修正に対して閉じている状態にする
-#   --- コードの追加によって拡張が容易
-#   --- コードの修正箇所をなるべく少なくする
+#   --- 拡張： コードの追加によって柔軟対応
+#   --- 修正： 既存コードの修正箇所をなるべく少なくする（できるだけ新しいコードの追加で修正する）
 
 
 # ＜メリット＞
@@ -36,7 +36,7 @@ from abc import ABCMeta, abstractmethod
 
 # 1 基本クラスの定義 ------------------------------------------------
 
-# ＜ポイント＞
+# ＜クラス概要＞
 # - ユーザー情報を保持するクラス
 
 
@@ -55,8 +55,11 @@ class UserInfo:
 
 # 2 原則を満たさない実装例 ---------------------------------------
 
-# ＜ポイント＞
+# ＜クラス概要＞
 # - ユーザー情報(UserInfoクラス)から指定した属性のユーザーを抽出する
+
+
+# ＜問題点＞
 # - フィルタ項目ごとにメソッドが定義されている
 #   --- フィルタ項目を変更するたびにメソッドを追加する必要がある
 #   --- 複数項目のAND条件やOR条件を含めるとメソッドが膨大になる可能性がある
@@ -80,9 +83,9 @@ class UserInfoFilter:
 
 # インスタンス生成
 # --- ユーザー情報
-taro = UserInfo('taro', 'salary man', 'Japan')
-jiro = UserInfo('jiro', 'police man', 'Japan')
-john = UserInfo('john', 'salary man', 'USA')
+taro = UserInfo(user_name='taro', job_name='salary man', nationality='Japan')
+jiro = UserInfo(user_name='jiro', job_name='police man', nationality='Japan')
+john = UserInfo(user_name='john', job_name='salary man', nationality='USA')
 
 # リスト格納
 user_list = [taro, jiro, john]
@@ -104,7 +107,7 @@ for man in UserInfoFilter.filter_users_nationality(user_list, 'Japan'):
 #   --- クラス単位でANDとORで条件判定ができるようにする
 
 
-# ＜クラス定義＞
+# ＜クラス構成＞
 # - Comparation(metaclass=ABCMeta)
 #   --- AndComparation(Comparation)
 #   --- OrComparation(Comparation)
