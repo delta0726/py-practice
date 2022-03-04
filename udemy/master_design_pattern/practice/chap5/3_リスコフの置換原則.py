@@ -3,7 +3,7 @@
 # Chapter     : 5 SOLIDの原則
 # Theme       : 3 リスコフの置換原則
 # Creat Date  : 2022/2/25
-# Final Update:
+# Final Update: 2022/3/4
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -59,15 +59,18 @@ class Rectangle:
 class Square(Rectangle):
 
     def __init__(self, size):
-        self._width = self._height = size
+        self._width = size
+        self._height = size
 
     @Rectangle.width.setter
     def width(self, size):
-        self._width = self._height = size
+        self._width = size
+        self._height = size
     
     @Rectangle.height.setter
     def height(self, size):
-        self._width = self._height = size
+        self._width = size
+        self._height = size
 
 
 # 2 クラスに適用する関数 --------------------------------------------
