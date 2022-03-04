@@ -3,7 +3,7 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 50 再帰
 # Creat Date  : 2022/2/5
-# Final Update:
+# Final Update: 2022/3/4
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
@@ -29,6 +29,7 @@ def sample(a):
         print(a)
         sample(a - 1)
 
+
 # 関数実行
 sample(10)
 
@@ -40,6 +41,7 @@ sample(10)
 # --- 2番目までは1を返し、それ以降は直前の2つの値の和
 def fib(n):
     return 1 if n < 3 else fib(n - 1) + fib(n - 2)
+
 
 for x in range(1, 10):
     print(fib(x))
