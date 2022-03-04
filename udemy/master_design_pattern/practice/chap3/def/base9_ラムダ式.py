@@ -3,14 +3,14 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 49 ラムダ式
 # Creat Date  : 2022/2/5
-# Final Update:
+# Final Update: 2022/3/4
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
 
 
 # ＜ラムダ式とは＞
 # - 1行で関数を定義したものをラムダ式という
-#   --- 無名関数として定義することが多い（名前を付けることは可能）
+#   --- 関数名を定義しない関数であることから｢無名関数｣ともいう
 
 
 # ＜目次＞
@@ -47,11 +47,10 @@ lambda_a = lambda x: x * x
 # 実行
 print(lambda_a(10))
 
-
 # ラムダ式の定義
 # --- 複数の引数を持つ場合
 # --- 初期値を指定することも可能
-lambda_b = lambda x, y, z = 5: x * y * z
+lambda_b = lambda x, y, z=5: x * y * z
 
 # 実行
 print(lambda_b(2, 3))
