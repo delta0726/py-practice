@@ -83,6 +83,7 @@ def calcurate(x, y, z):
     elif z == 'minus':
         return x - y
 
+
 # map関数の適用
 # --- 第3引数以降は適用関数の引数を指定することが可能
 map_sample = map(calcurate, range(5),
