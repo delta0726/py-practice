@@ -3,9 +3,13 @@
 # Chapter     : 3 Python基本文法講座
 # Theme       : 39 関数1
 # Creat Date  : 2022/2/4
-# Final Update:
+# Final Update: 2022/3/2
 # URL         : https://www.udemy.com/course/python-mx/
 # ******************************************************************************
+
+
+# ＜概要＞
+# - 関数とは一連の処理をまとめたもの
 
 
 # ＜目次＞
@@ -18,6 +22,7 @@
 # 関数定義
 def print_hello():
     print('Hello World')
+
 
 # 関数実行
 print_hello()
@@ -38,6 +43,7 @@ def num_max(a: int, b: int):
         return a
     else:
         return b
+
 
 # 関数実行
 # --- 引数名を指定して順序を入れ替えて実行
