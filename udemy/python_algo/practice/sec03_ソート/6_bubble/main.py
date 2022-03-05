@@ -52,10 +52,10 @@ def bubble_sort(numbers: List[int]) -> List[int]:
 # 2 実行 -----------------------------------------------------------------------
 
 if __name__ == '__main__':
-    # 小さい数字
+    # 例題の数字
     nums = [2, 5, 1, 8, 7, 3]
     bubble_sort(numbers=nums)
 
-    # 大きい数字
+    # ランダムな数字
     nums = [random.randint(0, 1000) for _ in range(10)]
     bubble_sort(numbers=nums)
