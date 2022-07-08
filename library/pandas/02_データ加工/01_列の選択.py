@@ -2,7 +2,7 @@
 # Category : Grammar of Pandas
 # Chapter  : データ加工
 # Title    : 列の選択
-# Date     : 2022/06/27
+# Date     : 2022/07/09
 # ******************************************************************************
 
 
@@ -53,6 +53,11 @@ iris['Sepal_Length']
 # locによる選択
 iris.loc[:, 'Sepal_Length']
 
+# ドットによる選択
+# --- インテリセンスが使える
+# --- ドットが含まれる列は取得することができない
+iris.Sepal_Length
+
 
 # 2 列名によるDataFrame選択 -------------------------------------------------------
 
@@ -62,15 +67,15 @@ iris.loc[:, 'Sepal_Length']
 # - ブラケットでデータフレームとして抽出する場合は列をリストで指定する
 
 
-# locによる選択
+# ブラケットによる選択
+# --- ブラケットでリストを指定（二重のブラケット）
+iris[['Sepal_Length', 'Petal_Width', 'Species']]
+
+# locプロパティによる選択
 iris.loc[:, ['Sepal_Length', 'Petal_Width', 'Species']]
 
 # filterによる選択
 iris.filter(['Sepal_Length', 'Petal_Width', 'Species'])
-
-# ブラケットによる選択
-# --- ブラケットでリストを指定（二重のブラケット）
-iris[['Sepal_Length', 'Petal_Width', 'Species']]
 
 
 # 3 番号によるSeries/DataFrame選択 ------------------------------------------------------
@@ -81,10 +86,13 @@ iris[['Sepal_Length', 'Petal_Width', 'Species']]
 
 
 # ilocで番号による選択
-# --- Series
-# --- DataFrame
+# --- Series（列を数値で指定）
+# --- DataFrame(列をリストで指定)
 iris.iloc[:, 1]
 iris.iloc[:, [0, 2, 4]]
+
+# データフレーム全体を指定
+iris.iloc[:, :]
 
 
 # 4 列名の一部から選択 -------------------------------------------------------
@@ -95,16 +103,21 @@ iris.iloc[:, [0, 2, 4]]
 #   --- fitlterメソッドは正規表現で文字列を選択して列取得
 
 
-# 先頭一致
+# locプロパティ
+# --- 先頭一致（str.startswith）
+# --- 後方一致（str.endswith）
+# --- 部分一致（str.contains）
 iris.loc[:, lambda x: x.columns.str.startswith("Sepal")]
-iris.filter(regex="^Sepal")
-
-# 後方一致
 iris.loc[:, lambda x: x.columns.str.endswith("Width")]
-iris.filter(regex="Width$")
-
-# 部分一致
 iris.loc[:, lambda x: x.columns.str.contains("Wid")]
+
+# filterメソッド
+# --- 正規表現を用いる
+# --- 先頭一致（regex="^Sepal"）
+# --- 後方一致（regex="Width$"）
+# --- 部分一致（like="Wid"）
+iris.filter(regex="^Sepal")
+iris.filter(regex="Width$")
 iris.filter(like="Wid")
 
 
@@ -175,8 +188,16 @@ iris.reindex(columns=['Species', 'Sepal_Width', 'Sepal_Length']).\
 
 # 9 特定列を先頭にして並び替える -------------------------------------------------------
 
-# 特定列を先頭にする
-# --- リストのアンパックによる操作
+# concatを活用したソート
+# --- 単純かつ直感的な方法
+df1 = iris[['Species']]
+df2 = iris[['Sepal_Length', 'Sepal_Width', 'Petal_Length', 'Petal_Width']]
+pd.concat([df1, df2], axis=1)
+
+# 並び替え後の列リストを作成してソート
+# --- tolist()でインデックスをリストに変換
+# --- 先頭にしたい列を削除
+# --- 先頭列をリストの先頭に指定（残りは*でリストをアンパック）
 col_list = iris.columns.tolist()
 col_list.remove('Species')
 iris[['Species', *col_list]]
@@ -191,13 +212,14 @@ iris[['Species', *col_list]]
 # 10 複数列を先頭にして並び替える ------------------------------------------------------
 
 # 単純な方法
+# --- 単一列の並び替えと同じ要領
 col_lst = iris.columns.tolist()
-col_lst.remove('Petal.Length')
-col_lst.remove('Petal.Width')
-iris[['Petal.Length', 'Petal.Width', *col_lst]]
+col_lst.remove('Petal_Length')
+col_lst.remove('Petal_Width')
+iris[['Petal_Length', 'Petal_Width', *col_lst]]
 
 # 内包表記の活用
-col_lst = df.columns.tolist()
-cols_to_front = ['model', 'category_1', 'category_2']
+col_lst = iris.columns.tolist()
+cols_to_front = ['Petal_Length', 'Petal_Width']
 l2 = [col for col in col_lst if col not in cols_to_front]
-df[[*cols_to_front, *l2]]
+iris[[*cols_to_front, *l2]]
