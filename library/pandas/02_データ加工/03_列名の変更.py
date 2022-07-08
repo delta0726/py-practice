@@ -73,6 +73,12 @@ iris.rename(columns=lambda x: x.upper())
 iris.rename(columns=lambda x: x.replace('.', '_').title())
 iris.rename(columns=lambda x: x.replace(".", "_"))
 
+# データフレームの属性を直接変更
+temp_df = iris.copy()
+temp_df.columns = iris.columns.str.upper()
+iris.columns
+temp_df.columns
+
 
 # 3 列名の再定義 -------------------------------------------------------------------
 

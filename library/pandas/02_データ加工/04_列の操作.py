@@ -19,6 +19,7 @@
 # 8 データ型の変換
 # 9 データの置換
 # 10 欠損値の補完
+# 11 単独列を複数列に分解
 
 
 # 0 準備 --------------------------------------------------------------------------
@@ -36,10 +37,12 @@ fpath = "library/pandas/csv"
 # ファイル名
 fname1 = "iris.csv"
 fname2 = "iris_dot.csv"
+fname3 = "iris_multi.csv"
 
 # ファイル読込
 iris = pd.read_csv(fpath + "/" + fname1)
 iris_dot = pd.read_csv(fpath + "/" + fname2)
+iris_multi = pd.read_csv(fpath + "/" + fname3)
 
 
 # 1 列の追加 -------------------------------------------------------------------
@@ -244,3 +247,17 @@ iris_err.fillna(method='ffill')
 
 # 後方の値で補完する
 iris_err.fillna(method='bfill')
+
+
+# 11 単独列を複数列に分解 ------------------------------------------------
+
+# 作業用データフレームを作成して分割
+temp_df = iris_multi['Species_Multi'].str.split('_', n=-1, expand=True)
+
+# 元のデータフレームに追加
+iris_multi['Species2'] = temp_df[0]
+iris_multi['Add1'] = temp_df[1]
+iris_multi['Add2'] = temp_df[2]
+
+# 確認
+iris_multi.columns
