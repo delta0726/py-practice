@@ -3,7 +3,7 @@
 # Chapter   : 02 データ加工
 # Title     : 列の操作
 # Created by: Owner
-# Created on: 2021/10/29
+# Created on: 2022/07/09
 # ******************************************************************************
 
 
@@ -251,6 +251,8 @@ iris_err.fillna(method='bfill')
 
 # 11 単独列を複数列に分解 ------------------------------------------------
 
+# 方法1：分解した列を元のデータフレームに追加-------------------
+
 # 作業用データフレームを作成して分割
 temp_df = iris_multi['Species_Multi'].str.split('_', n=-1, expand=True)
 
@@ -261,3 +263,14 @@ iris_multi['Add2'] = temp_df[2]
 
 # 確認
 iris_multi.columns
+
+
+# 方法2：分解後のデータフレームを元のデータフレームに結合 ------
+
+# 列名変換も同時に行う
+temp_df = iris_multi['Species_Multi']\
+    .str.split('_', expand=True)\
+    .set_axis(['Species2', 'Add1', 'Add2'], axis=1)
+
+# 結合
+pd.concat([iris_multi, temp_df], axis=1)
