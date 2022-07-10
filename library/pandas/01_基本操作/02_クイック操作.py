@@ -2,8 +2,7 @@
 # Category  : Grammar of Pandas
 # Chapter   : 01 基本操作
 # Title     : 02 クイック操作
-# Created by: Owner
-# Created on: 2020/12/20
+# Date      : 2022/07/10
 # ******************************************************************************
 
 

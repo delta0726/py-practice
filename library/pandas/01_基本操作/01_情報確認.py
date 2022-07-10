@@ -2,8 +2,7 @@
 # Category  : Grammar of Pandas
 # Chapter   : 01 基本操作
 # Title     : 01 情報確認
-# Created by: Owner
-# Created on: 2022/07/09
+# Date      : 2022/07/10
 # ******************************************************************************
 
 
