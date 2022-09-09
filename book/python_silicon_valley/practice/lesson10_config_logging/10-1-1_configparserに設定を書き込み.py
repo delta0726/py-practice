@@ -2,7 +2,7 @@
 # Book     : Pythonプロフェッショナル大全
 # Chapter  : 10 コンフィグとロギング
 # Section  : 1 設定ファイルの様々な形式
-# Theme    : configparserの作成
+# Theme    : 1 configparserの作成
 # Date     : 2022/09/10
 # URL      : https://www.kadokawa.co.jp/product/322201000299/
 # ******************************************************************************

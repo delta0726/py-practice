@@ -2,7 +2,7 @@
 # Book     : Pythonプロフェッショナル大全
 # Chapter  : 10 コンフィグとロギング
 # Section  : 1 設定ファイルの様々な形式
-# Theme    : configpaserで設定の読み込み
+# Theme    : 2 configpaserで設定の読み込み
 # Date     : 2022/09/10
 # URL      : https://www.kadokawa.co.jp/product/322201000299/
 # ******************************************************************************
